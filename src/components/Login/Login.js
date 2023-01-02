@@ -11,6 +11,16 @@ const Login = (props) => {
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
   useEffect(()=>{
+    // este use effect só funciona quando o projeto carrega uma vez, e a sua função de 
+    //limpeza só vai funcionar ao encerrar o componente
+    console.log("effect running")
+
+    return ()=>{
+      console.log("effect cleanupp")
+    }
+  },[enteredPassword])
+
+  useEffect(()=>{
       //para poder fazer uma unica validação é criado um temporizador com a condicional
       //e com isto nós temos uma função que limpa ao clique
       //e isto é muito util em chamadas de api, pois assim não precisamos fazer muitas
