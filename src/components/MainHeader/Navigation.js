@@ -3,6 +3,10 @@ import React from 'react';
 import classes from './Navigation.module.css';
 
 const Navigation = (props) => {
+  function SessionLogout (){
+    localStorage.setItem('isLoggedIn','0')
+    props.onLogout();
+  }
   return (
     <nav className={classes.nav}>
       <ul>
@@ -18,7 +22,7 @@ const Navigation = (props) => {
         )}
         {props.isLoggedIn && (
           <li>
-            <button onClick={props.onLogout}>Logout</button>
+            <button onClick={()=>SessionLogout()}>Logout</button>
           </li>
         )}
       </ul>

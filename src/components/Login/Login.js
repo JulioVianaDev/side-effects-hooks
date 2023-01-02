@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 
 import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
@@ -10,7 +10,22 @@ const Login = (props) => {
   const [enteredPassword, setEnteredPassword] = useState('');
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
-
+  useEffect(()=>{
+      //para poder fazer uma unica validação é criado um temporizador com a condicional
+      //e com isto nós temos uma função que limpa ao clique
+      //e isto é muito util em chamadas de api, pois assim não precisamos fazer muitas
+      // requisições em api sobrecarregando o servidor  
+      const identifier = setTimeout(()=>{
+      console.log("digitando")
+      setFormIsValid(
+        enteredEmail.includes('@') && enteredPassword.trim().length > 6
+      )
+    },500)
+    return ()=>{
+      console.log("limpando")
+      clearTimeout(identifier);
+    }
+  },[enteredEmail,enteredPassword])
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
 
