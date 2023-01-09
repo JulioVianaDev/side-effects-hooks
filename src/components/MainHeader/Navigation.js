@@ -7,7 +7,7 @@ const Navigation = () => {
     localStorage.setItem('isLoggedIn','0')
     ctx.onLogout();
   }
-
+  
   const ctx = useContext(AuthContext)
   return (
     // <AuthContext.Consumer>
